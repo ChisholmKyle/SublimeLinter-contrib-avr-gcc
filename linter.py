@@ -62,7 +62,7 @@ class AvrGcc(Linter):
         'extra_flags': ""
     }
 
-    base_cmd =  'avr-gcc -fsyntax-only -Wall '
+    base_cmd = 'avr-gcc -fsyntax-only -Wall '
 
     # line_col_base = (1, 1)
     # selectors = {}
