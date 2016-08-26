@@ -63,9 +63,10 @@ In project-specific settings, '${project_folder}' can be used to specify a relat
         "avrgcc": {
             "include_dirs": [
                 "${project_folder}/include",
-                "/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/cores/arduino"
+                "/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/cores/arduino",
+                "/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/variants/eightanaloginputs"
             ],
-            "extra_cflags": "-mmcu=atmega328p -DF_CPU=16000000L"
+            "extra_flags": "-mmcu=atmega328p -DF_CPU=16000000L"
         }
     }
 },
