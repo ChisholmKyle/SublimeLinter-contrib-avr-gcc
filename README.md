@@ -1,7 +1,7 @@
 SublimeLinter-contrib-avr-gcc
 ================================
 
-[![Build Status](https://travis-ci.org/SublimeLinter/SublimeLinter-contrib-avr-gcc.svg?branch=master)](https://travis-ci.org/SublimeLinter/SublimeLinter-contrib-avr-gcc)
+[![Build Status](https://travis-ci.org/ChisholmKyle/SublimeLinter-contrib-avr-gcc.svg?branch=master)](https://travis-ci.org/ChisholmKyle/SublimeLinter-contrib-avr-gcc)
 
 This linter plugin for [SublimeLinter][docs] provides an interface to [avr-gcc](http://www.atmel.com/webdoc/AVRLibcReferenceManual/overview_1overview_gcc.html). It will be used with files that have the “C/C++” syntax. This linter is based on [SublimeLinter-contrib-clang](https://packagecontrol.io/packages/SublimeLinter-contrib-clang).
 
