@@ -59,7 +59,9 @@ class AvrGcc(Linter):
 
     defaults = {
         'include_dirs': [],
-        'extra_flags': ""
+        'extra_flags': "",
+        'extra_cflags': "",
+        'extra_cxxflags': ""
     }
 
     base_cmd = 'avr-gcc -fsyntax-only -Wall '
@@ -83,17 +85,15 @@ class AvrGcc(Linter):
         """
 
         result = self.base_cmd
+        settings = self.get_view_settings()
 
         if persist.get_syntax(self.view) in ['c', 'c improved']:
-            result += ' -x c '
+            result += ' -x c ' + settings.get('extra_cflags', '') + ' '
         elif persist.get_syntax(self.view) in ['c++', 'c++11']:
-            result += ' -x c++ '
-
-        settings = self.get_view_settings()
+            result += ' -x c++ ' + settings.get('extra_cxxflags', '') + ' '
         result += apply_template(settings.get('extra_flags', ''))
 
         include_dirs = settings.get('include_dirs', [])
-
         if include_dirs:
             result += apply_template(' '.join([' -I ' + shlex.quote(include) for include in include_dirs]))
 
