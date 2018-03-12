@@ -1,0 +1,15 @@
+SublimeLinter-contrib-avr-gcc
+-------------------------------
+You've upgraded SublimeLinter-contrib-avr-gcc to version 2.0.0
+
+****************************************
+** WARNING: BREAKING CHANGES in 2.0.0 **
+****************************************
+
+Since version 2.0.0, the '${project_folder}' expansion variable will NOT be expanded in the settings. To fix this, replace '${project_folder}' with '${project_path}'. All expansion variables supported by SublimeLinter settings are described at the following link:
+
+http://sublimelinter.readthedocs.io/en/latest/settings.html#settings-expansion
+
+For more information on the linter settings, go to the github repo
+
+https://github.com/ChisholmKyle/SublimeLinter-contrib-avr-gcc

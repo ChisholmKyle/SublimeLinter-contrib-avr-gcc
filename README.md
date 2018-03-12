@@ -5,6 +5,10 @@ SublimeLinter-contrib-avr-gcc
 
 This linter plugin for [SublimeLinter](https://github.com/SublimeLinter/SublimeLinter) provides an interface to [avr-gcc](http://www.atmel.com/webdoc/AVRLibcReferenceManual/overview_1overview_gcc.html). It will be used with files that have the “C/C++” syntax. This linter is based on [SublimeLinter-contrib-clang](https://packagecontrol.io/packages/SublimeLinter-contrib-clang).
 
+## Note: Breaking change in 2.0.0
+
+Since version 2.0.0, the `${project_folder}` expansion variable will NOT be expanded in the settings. To fix this, replace with `${project_path}`. All expansion variables supported by SublimeLinter settings are described [here](http://sublimelinter.readthedocs.io/en/latest/settings.html#settings-expansion).
+
 ## Installation
 
 SublimeLinter must be installed in order to use this plugin.
@@ -49,7 +53,7 @@ Additional SublimeLinter-contrib-avr-gcc settings:
 |extra_cflags|Extra flags to pass to avr-gcc when linting C syntax code.|
 |extra_cxxflags|Extra flags to pass to avr-gcc when linting C++ syntax code.|
 
-In project-specific settings, '${project_folder}' can be used to specify a relative path for the `include_dirs` or `extra_flags` options. Here is an example of project settings for development targeting an Arduino Mini Pro 5V with the Wire library:
+In project-specific settings, note that SublimeLinter allows [expansion variables](http://sublimelinter.readthedocs.io/en/latest/settings.html#settings-expansion). For example the variable '${project_path}' can be used to specify a path relative to the project folder for the `include_dirs` or `extra_flags` options. Here is an example of project settings for development targeting an Arduino Mini Pro 5V with the Wire library:
 
 ```
 "SublimeLinter":
@@ -58,7 +62,7 @@ In project-specific settings, '${project_folder}' can be used to specify a relat
     {
         "avrgcc": {
             "include_dirs": [
-                "${project_folder}/include",
+                "${project_path}/include",
                 "/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/cores/arduino",
                 "/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/variants/eightanaloginputs",
                 "/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/libraries/Wire/src",
@@ -69,7 +73,7 @@ In project-specific settings, '${project_folder}' can be used to specify a relat
             "extra_cxxflags": "-std=gnu++14"
         }
     }
-},
+}
 ```
 
 ## Contributing

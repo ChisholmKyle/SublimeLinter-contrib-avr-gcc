@@ -12,30 +12,6 @@
 
 import shlex
 from SublimeLinter.lint import Linter, util
-import sublime
-import os
-import string
-
-
-def get_project_folder():
-    """Return the project folder path."""
-    proj_file = sublime.active_window().project_file_name()
-    if proj_file:
-        return os.path.dirname(proj_file)
-    # Use current file's folder when no project file is opened.
-    proj_file = sublime.active_window().active_view().file_name()
-    if proj_file:
-        return os.path.dirname(proj_file)
-    return '.'
-
-
-def apply_template(s):
-    """Replace "project_folder" string with the project folder path."""
-    mapping = {
-        "project_folder": get_project_folder()
-    }
-    templ = string.Template(s)
-    return templ.safe_substitute(mapping)
 
 
 class AvrGcc(Linter):
@@ -93,11 +69,11 @@ class AvrGcc(Linter):
             result += ' -x c ' + settings.get('extra_cflags', '') + ' '
         elif util.get_syntax(self.view) in ['c++', 'c++11']:
             result += ' -x c++ ' + settings.get('extra_cxxflags', '') + ' '
-        result += apply_template(settings.get('extra_flags', ''))
+        result += settings.get('extra_flags', '')
 
         include_dirs = settings.get('include_dirs', [])
         if include_dirs:
-            result += apply_template(' '.join(
-                [' -I ' + shlex.quote(include) for include in include_dirs]))
+            result += ' '.join(
+                [' -I ' + shlex.quote(include) for include in include_dirs])
 
         return result + ' -'
