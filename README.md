@@ -3,14 +3,17 @@ SublimeLinter-contrib-avr-gcc
 
 [![Build Status](https://travis-ci.org/ChisholmKyle/SublimeLinter-contrib-avr-gcc.svg?branch=master)](https://travis-ci.org/ChisholmKyle/SublimeLinter-contrib-avr-gcc)
 
-This linter plugin for [SublimeLinter][docs] provides an interface to [avr-gcc](http://www.atmel.com/webdoc/AVRLibcReferenceManual/overview_1overview_gcc.html). It will be used with files that have the “C/C++” syntax. This linter is based on [SublimeLinter-contrib-clang](https://packagecontrol.io/packages/SublimeLinter-contrib-clang).
+This linter plugin for [SublimeLinter](https://github.com/SublimeLinter/SublimeLinter) provides an interface to [avr-gcc](http://www.atmel.com/webdoc/AVRLibcReferenceManual/overview_1overview_gcc.html). It will be used with files that have the “C/C++” syntax. This linter is based on [SublimeLinter-contrib-clang](https://packagecontrol.io/packages/SublimeLinter-contrib-clang).
 
 ## Installation
-SublimeLinter 4 must be installed in order to use this plugin. If SublimeLinter 4 is not installed, please follow the instructions [here][installation].
 
-### Linter installation
+SublimeLinter must be installed in order to use this plugin.
 
-Before using this plugin, you must ensure that `avr-gcc` is installed on your system. To install `avr-gcc`, do the following:
+Please use [Package Control](https://packagecontrol.io) to install the linter plugin.
+
+### Install `avr-gcc`
+
+Before using this plugin, you must ensure that `avr-gcc` is installed on your system. To install `avr-gcc`, do can do the following:
 
 #### Linux
 
@@ -29,24 +32,15 @@ Before using this plugin, you must ensure that `avr-gcc` is installed on your sy
 
 1. Download and extract the [Amtel AVR Toolchain for Windows](http://www.atmel.com/tools/atmelavrtoolchainforwindows.aspx).
 
-### Linter configuration
-In order for `avr-gcc` to be executed by SublimeLinter, you must ensure that its path is available to SublimeLinter. Before going any further, please read and follow the steps in [“Finding a linter executable”](http://sublimelinter.readthedocs.org/en/latest/troubleshooting.html#finding-a-linter-executable) through “Validating your PATH” in the documentation.
+### Configure PATH
 
-Once you have installed and configured `avr-gcc`, you can proceed to install the SublimeLinter-contrib-avr-gcc plugin if it is not yet installed.
-
-### Plugin installation
-Please use [Package Control][pc] to install the linter plugin. This will ensure that the plugin will be updated when new versions are available. If you want to install from source so you can modify the source code, you probably know what you are doing so we won’t cover that here.
-
-To install via Package Control, do the following:
-
-1. Within Sublime Text, bring up the [Command Palette][cmd] and type `install`. Among the commands you should see `Package Control: Install Package`. If that command is not highlighted, use the keyboard or mouse to select it. There will be a pause of a few seconds while Package Control fetches the list of available plugins.
-
-1. When the plugin list appears, type `avr-gcc`. Among the entries you should see `SublimeLinter-contrib-avr-gcc`. If that entry is not highlighted, use the keyboard or mouse to select it.
+In order for `avr-gcc` to be executed by SublimeLinter, you must ensure that its path is available to SublimeLinter. The docs cover [troubleshooting PATH configuration](http://sublimelinter.readthedocs.io/en/latest/troubleshooting.html#finding-a-linter-executable).
 
 ## Settings
-For general information on how SublimeLinter works with settings, please see [Settings][settings]. For information on generic linter settings, please see [Linter Settings][linter-settings].
+- SublimeLinter settings: http://sublimelinter.readthedocs.org/en/latest/settings.html
+- Linter settings: http://sublimelinter.readthedocs.org/en/latest/linter_settings.html
 
-In addition to the standard SublimeLinter settings, SublimeLinter-contrib-avr-gcc provides its own settings.
+Additional SublimeLinter-contrib-avr-gcc settings:
 
 |Setting|Description|
 |:------|:----------|
@@ -95,12 +89,3 @@ Please note that modifications should follow these coding guidelines:
 - Please use descriptive variable names, no abbreviations unless they are very well known.
 
 Thank you for helping out!
-
-[docs]: http://sublimelinter.readthedocs.org
-[installation]: http://sublimelinter.readthedocs.org/en/latest/installation.html
-[locating-executables]: http://sublimelinter.readthedocs.org/en/latest/usage.html#how-linter-executables-are-located
-[pc]: https://sublime.wbond.net/installation
-[cmd]: http://docs.sublimetext.info/en/sublime-text-3/extensibility/command_palette.html
-[settings]: http://sublimelinter.readthedocs.org/en/latest/settings.html
-[linter-settings]: http://sublimelinter.readthedocs.org/en/latest/linter_settings.html
-[inline-settings]: http://sublimelinter.readthedocs.org/en/latest/settings.html#inline-settings
