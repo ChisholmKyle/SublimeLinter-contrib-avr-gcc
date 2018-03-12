@@ -6,7 +6,7 @@ SublimeLinter-contrib-avr-gcc
 This linter plugin for [SublimeLinter][docs] provides an interface to [avr-gcc](http://www.atmel.com/webdoc/AVRLibcReferenceManual/overview_1overview_gcc.html). It will be used with files that have the “C/C++” syntax. This linter is based on [SublimeLinter-contrib-clang](https://packagecontrol.io/packages/SublimeLinter-contrib-clang).
 
 ## Installation
-SublimeLinter 3 must be installed in order to use this plugin. If SublimeLinter 3 is not installed, please follow the instructions [here][installation].
+SublimeLinter 4 must be installed in order to use this plugin. If SublimeLinter 4 is not installed, please follow the instructions [here][installation].
 
 ### Linter installation
 
