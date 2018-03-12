@@ -11,7 +11,7 @@
 """This module exports the AvrGcc plugin class."""
 
 import shlex
-from SublimeLinter.lint import Linter, util, persist
+from SublimeLinter.lint import Linter, util
 import sublime
 import os
 import string
@@ -48,7 +48,8 @@ class AvrGcc(Linter):
     version_re = r'(?P<version>\d+\.\d+\.\d+)'
     version_requirement = '>= 4.0'
 
-    # 1. column number, colon and space are only applicable for single line messages
+    # 1. column number, colon and space are only applicable for single line
+    #    messages
     # 2. several lines of anything followed by
     #    either error/warning/note or newline (= irrelevant backtrace content)
     #    (lazy quantifiers so we don’t skip what we seek)
@@ -69,8 +70,6 @@ class AvrGcc(Linter):
 
     base_cmd = 'avr-gcc -fsyntax-only -Wall '
 
-    # line_col_base = (1, 1)
-    # selectors = {}
     error_stream = util.STREAM_BOTH
     tempfile_suffix = None
     word_re = None
@@ -90,14 +89,15 @@ class AvrGcc(Linter):
         result = self.base_cmd
         settings = self.get_view_settings()
 
-        if persist.get_syntax(self.view) in ['c', 'c improved']:
+        if util.get_syntax(self.view) in ['c', 'c improved']:
             result += ' -x c ' + settings.get('extra_cflags', '') + ' '
-        elif persist.get_syntax(self.view) in ['c++', 'c++11']:
+        elif util.get_syntax(self.view) in ['c++', 'c++11']:
             result += ' -x c++ ' + settings.get('extra_cxxflags', '') + ' '
         result += apply_template(settings.get('extra_flags', ''))
 
         include_dirs = settings.get('include_dirs', [])
         if include_dirs:
-            result += apply_template(' '.join([' -I ' + shlex.quote(include) for include in include_dirs]))
+            result += apply_template(' '.join(
+                [' -I ' + shlex.quote(include) for include in include_dirs]))
 
         return result + ' -'
