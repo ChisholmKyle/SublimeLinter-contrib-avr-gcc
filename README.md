@@ -3,11 +3,11 @@ SublimeLinter-contrib-avr-gcc
 
 [![Build Status](https://travis-ci.org/ChisholmKyle/SublimeLinter-contrib-avr-gcc.svg?branch=master)](https://travis-ci.org/ChisholmKyle/SublimeLinter-contrib-avr-gcc)
 
-This linter plugin for [SublimeLinter](https://github.com/SublimeLinter/SublimeLinter) provides an interface to [avr-gcc](http://www.atmel.com/webdoc/AVRLibcReferenceManual/overview_1overview_gcc.html). It will be used with files that have the “C/C++” syntax. This linter is based on [SublimeLinter-contrib-clang](https://packagecontrol.io/packages/SublimeLinter-contrib-clang).
+This linter plugin for [SublimeLinter](https://github.com/SublimeLinter/SublimeLinter) provides an interface to [avr-gcc](http://www.atmel.com/webdoc/AVRLibcReferenceManual/overview_1overview_gcc.html). This linter will be used with files that have the “C/C++” syntax.
 
-## Note: Breaking change in 2.0.0
+### Tip for usage with Arduino
 
-Since version 2.0.0, the `${project_folder}` expansion variable will NOT be expanded in the settings. To fix this, replace with `${project_path}`. All expansion variables supported by SublimeLinter settings are described [here](http://sublimelinter.readthedocs.io/en/latest/settings.html#settings-expansion).
+If you are new to `avr-gcc` or microprocessors in general and want to get started using the [Arduino](https://www.arduino.cc/) library with C/C++ source files and great linting, this plugin can help (but does require some manual setup). See the example in [Settings](#settings) for using it with an Arduino Pro 5V and Wire library. If you set your Arduino IDE to show verbose output when compiling (enable in Arduino preferences), you can easily extract the required compiler flags for linting with `avr-gcc`.
 
 ## Installation
 
@@ -22,19 +22,32 @@ Before using this plugin, you must ensure that `avr-gcc` is installed on your sy
 #### Linux
 
 1. Install `avr-gcc` with your distro's package manager. On Ubuntu, for example, type the following in a terminal:
-
+```
     sudo apt-get install git gcc-avr
+```
 
 #### Mac
 
+Xcode and command line tools are required.
+
 1. Install and update [Macports](https://www.macports.org/)
 2. Type the following in a terminal:
-
+```
     sudo port install avr-gcc
+```
+
+Alternatively, use Homebrew:
+
+1. Install [Homebrew](https://brew.sh/)
+2. Run the following commands:
+```
+    brew tap osx-cross/avr
+    brew install avr-libc
+```
 
 #### Windows
 
-1. Download and extract the [Amtel AVR Toolchain for Windows](http://www.atmel.com/tools/atmelavrtoolchainforwindows.aspx).
+1. Download and extract the [Microchip AVR Toolchain for Windows](https://www.microchip.com/avr-support/avr-and-arm-toolchains-(c-compilers)).
 
 ### Configure PATH
 
@@ -53,9 +66,8 @@ Additional SublimeLinter-contrib-avr-gcc settings:
 |extra_cflags|Extra flags to pass to avr-gcc when linting C syntax code.|
 |extra_cxxflags|Extra flags to pass to avr-gcc when linting C++ syntax code.|
 
-In project-specific settings, note that SublimeLinter allows [expansion variables](http://sublimelinter.readthedocs.io/en/latest/settings.html#settings-expansion). For example the variable '${project_path}' can be used to specify a path relative to the project folder for the `include_dirs` or `extra_flags` options. Here is an example of project settings for development targeting an Arduino Mini Pro 5V with the Wire library:
-
-```
+In project-specific settings, note that SublimeLinter allows [expansion variables](http://sublimelinter.readthedocs.io/en/latest/settings.html#settings-expansion). For example the variable '${project_path}' can be used to specify a path relative to the project folder in your settings. Here is an example of project settings for development targeting an Arduino Mini Pro 5V with the Wire library:
+```json
 "SublimeLinter":
 {
     "linters":
