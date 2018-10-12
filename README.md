@@ -47,15 +47,15 @@ Alternatively, use Homebrew:
 
 #### Windows
 
-1. Download and extract the [Microchip AVR Toolchain for Windows](https://www.microchip.com/avr-support/avr-and-arm-toolchains-(c-compilers)).
+1. Download and extract the [Microchip AVR Toolchain for Windows](https://www.microchip.com/mplab/avr-support/avr-and-arm-toolchains-c-compilers).
 
 ### Configure PATH
 
 In order for `avr-gcc` to be executed by SublimeLinter, you must ensure that its path is available to SublimeLinter. The docs cover [troubleshooting PATH configuration](http://sublimelinter.readthedocs.io/en/latest/troubleshooting.html#finding-a-linter-executable).
 
 ## Settings
-- SublimeLinter settings: http://sublimelinter.readthedocs.org/en/latest/settings.html
-- Linter settings: http://sublimelinter.readthedocs.org/en/latest/linter_settings.html
+- SublimeLinter settings: [http://sublimelinter.readthedocs.org/en/latest/settings.html](http://sublimelinter.readthedocs.org/en/latest/settings.html)
+- Linter settings: [http://sublimelinter.readthedocs.org/en/latest/linter_settings.html](http://sublimelinter.readthedocs.org/en/latest/linter_settings.html)
 
 Additional SublimeLinter-contrib-avr-gcc settings:
 
@@ -68,23 +68,18 @@ Additional SublimeLinter-contrib-avr-gcc settings:
 
 In project-specific settings, note that SublimeLinter allows [expansion variables](http://sublimelinter.readthedocs.io/en/latest/settings.html#settings-expansion). For example the variable '${project_path}' can be used to specify a path relative to the project folder in your settings. Here is an example of project settings for development targeting an Arduino Mini Pro 5V with the Wire library:
 ```json
-"SublimeLinter":
-{
-    "linters":
-    {
-        "avrgcc": {
-            "include_dirs": [
-                "${project_path}/include",
-                "/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/cores/arduino",
-                "/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/variants/eightanaloginputs",
-                "/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/libraries/Wire/src",
-                "/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/libraries/Wire/src/utility"
-            ],
-            "extra_flags": "-mmcu=atmega328p -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO_AVR_PRO",
-            "extra_cflags": "-std=gnu99",
-            "extra_cxxflags": "-std=gnu++14"
-        }
-    }
+"settings": {
+    "SublimeLinter.linters.avrgcc.executable": "C:/tools/avr8-gnu-toolchain-win32_x86/bin/avr-gcc.exe",
+    "SublimeLinter.linters.avrgcc.extra_cflags": "-std=gnu99",
+    "SublimeLinter.linters.avrgcc.extra_cxxflags": "-std=gnu++14",
+    "SublimeLinter.linters.avrgcc.extra_flags": "-mmcu=atmega328p -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO_AVR_PRO",
+    "SublimeLinter.linters.avrgcc.include_dirs": [
+        "${project_path}/include",
+        "C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino",
+        "C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/eightanaloginputs",
+        "C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src",
+        "C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries/Wire/src/utility"
+    ]
 }
 ```
 
