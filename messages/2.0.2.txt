@@ -1,0 +1,7 @@
+SublimeLinter-contrib-avr-gcc
+-------------------------------
+You've upgraded SublimeLinter-contrib-avr-gcc to version 2.0.2
+
+For more information on the linter settings, go to the github repo
+
+https://github.com/ChisholmKyle/SublimeLinter-contrib-avr-gcc

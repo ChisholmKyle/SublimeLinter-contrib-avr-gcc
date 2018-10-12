@@ -10,6 +10,7 @@
 
 """This module exports the AvrGcc plugin class."""
 
+import re
 import shlex
 from SublimeLinter.lint import Linter, util
 
@@ -30,12 +31,13 @@ class AvrGcc(Linter):
     #    either error/warning/note or newline (= irrelevant backtrace content)
     #    (lazy quantifiers so we don’t skip what we seek)
     # 3. match the remaining content of the current line for output
-    regex = (r'<stdin>:(?P<line>\d+):'
-             r'((?P<col>\d*): )?'
-             r'(.*?((?P<error>error)|(?P<warning>warning|note)|\r?\n))+?'
-             r': (?P<message>.+)')
-
-    multiline = True
+    OUTPUT_RE = re.compile(
+        r'<stdin>:(?P<line>\d+):'
+        r'((?P<col>\d*): )?'
+        r'(.*?((?P<error>error)|(?P<warning>warning|note)|\r?\n))+?'
+        r': (?P<message>.+)',
+        re.MULTILINE
+    )
 
     defaults = {
         'include_dirs': [],
@@ -46,12 +48,9 @@ class AvrGcc(Linter):
 
     base_cmd = 'avr-gcc -fsyntax-only -Wall '
 
-    error_stream = util.STREAM_BOTH
-    tempfile_suffix = None
-    word_re = None
-    inline_settings = None
-    inline_overrides = None
-    comment_re = None
+    regex = OUTPUT_RE
+    multiline = True
+    on_stderr = None
 
     def cmd(self):
         """
